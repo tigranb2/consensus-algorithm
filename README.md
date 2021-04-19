@@ -59,4 +59,4 @@ Execute:
 # description should describe the test (e.g. ACR_scalability-100). There should be no spaces. The file where perfromance data is stored is {description}-data.txt
 ```
 
-After running, the collected data will be printed on screen and saved to a file (see above). Copy the 5 lines for test.
+After running, the collected data will be printed on screen and saved to a file (see above). Copy the 5 lines for each test.
