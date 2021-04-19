@@ -33,8 +33,9 @@ network:
     loss: null    # set loss rate (%) (set it to null for MP3 and BMP3!)
 ...
 ```
-**For the MP3 and BMP3 algorithms, _ALWAYS_ keep loss rate as "null".**\
-   
+**_For the MP3 and BMP3 algorithms, ALWAYS keep loss rate as "null"._**
+      
+      
 Open config.json to set node count and fault count:
 ```shell
 nano config.json
