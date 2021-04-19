@@ -47,9 +47,9 @@ var NodeCount, FaultCount = defineCounts(nodeCounts)
 //formats ip:port for nodes
 func defineNodes(nodesInfo map[int]string) map[int]string {
 	nodesCONNECT := make(map[int]string)
-	for node, info := range nodesInfo {
-		nI := strings.Fields(info)
-		nodesCONNECT[node] = nI[1]+":"+nI[2]
+	for i := 1; i <= NodeCount; i++ {
+		nI := strings.Fields(nodesInfo[i])
+		nodesCONNECT[i] = nI[1]+":"+nI[2]
 
 		if len(nodesCONNECT) == NodeCount {
 			break
