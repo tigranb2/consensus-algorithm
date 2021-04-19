@@ -53,7 +53,6 @@ func main() {
 	go broadcast(int(delay))
 
 	for {
-		time.Sleep(500 * time.Millisecond)
 		if p == 100 {
 			timeElapsed := time.Since(start)
 			defer fmt.Printf("Time taken: %v\n", timeElapsed)
