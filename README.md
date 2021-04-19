@@ -14,7 +14,7 @@ cd consensus-algorithm && . setup.sh # installs dependencies (Go, Python, Minine
 ### Configuration:
 To configure the algorithm, edit config.yaml and config.json.  
     
-Open config.yaml to edit the number of Mininet nodes and loss rate:
+Open config.yaml to edit the number of Mininet hosts and loss rate:
 ```shell
 nano config.yaml
 ```
