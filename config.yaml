@@ -10,7 +10,7 @@ network:
     bw: null    # e.g., 100 (Mb/s)
     delay: 10  # e.g., 1s, 1ms
     jitter: 3  # e.g., 1s, 1ms
-    loss: 5    # e.g.,1 (percent)
+    loss: null    # e.g.,1 (percent)
 
   node:
     cpu: -1
