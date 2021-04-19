@@ -3,6 +3,8 @@ Compilation of ACR, BACR, MP3, and BMP3 algorithms.
 
 ## Installation
 Execute line by line:
+
+
 ```
 sudo su 
 cd /usr/local/go/src # install directory 
