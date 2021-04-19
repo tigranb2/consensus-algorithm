@@ -54,7 +54,7 @@ Execute:
 . run.sh {algorithm} {num_of_nodes} {broadcast_frequency OR timeout} {loss_rate} {description}
 # algorithm is the name of the algorithm you wish to run (e.g. ACR, BMP3, etc.)
 # num_of_nodes is the number of nodes (same as number in config.json and config.yaml)
-# the third argument is the broadcast frequency for ACR & BACR, and it is the timeout for MP3 & BMP3
+# the third argument is the broadcast frequency for ACR & BACR, but the timeout for MP3 & BMP3
 # loss_rate is the percent of messages lost (1.5 would be 1.5%)
 # description should describe the test (e.g. ACR_scalability-100). There should be no spaces. The file where perfromance data is stored is {description}-data.txt
 ```
