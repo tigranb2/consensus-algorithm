@@ -60,4 +60,14 @@ Execute:
 # description should describe the test (e.g. ACR_scalability_100). There should be no spaces. The file where perfromance data is stored is {description}-data.txt
 ```
 
-After running, the collected data will be printed on screen and saved to a file (see above). Copy the 5 lines for each test.
+After running, the collected data will be printed on screen and saved to a file (see above). Copy the 5 lines for each test.    
+Example (your numbers will be much larger... this is only 10 nodes):
+```shell
+...
+*** Done # copy the next 5 lines
+219.939342ms 89.2KB 101KB 
+184.599021ms 102KB 105KB
+237.078078ms 94.3KB 105KB
+210.949478ms 99.1KB 107KB
+206.415603ms 97.9KB 106KB
+```
