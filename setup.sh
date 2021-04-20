@@ -3,6 +3,7 @@ sudo apt update
 sudo apt -y upgrade
 sudo apt install -y build-essential linux-headers-$(uname -r)
 sudo apt install -y git zip python3-pip
+sudo apt install iftop
 
 cd
 wget -q https://dl.google.com/go/go1.14.linux-amd64.tar.gz
