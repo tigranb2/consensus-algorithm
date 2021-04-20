@@ -25,7 +25,7 @@ network:
   topo:
     class: SingleSwitchTopo
     args:
-      - 9 # set number of Mininet hosts. Should be the same as number of nodes
+      - 100 # set number of Mininet hosts. Should be the same as number of nodes
 
   link:
     bw: null    # e.g., 100 (Mb/s)
@@ -57,7 +57,7 @@ Execute:
 # num_of_nodes is the number of nodes (same as number in config.json and config.yaml)
 # the third argument is the broadcast frequency for ACR & BACR, but the timeout for MP3 & BMP3
 # loss_rate is the percent of messages lost (1.5 would be 1.5%)
-# description should describe the test (e.g. ACR_scalability-100). There should be no spaces. The file where perfromance data is stored is {description}-data.txt
+# description should describe the test (e.g. ACR_scalability_100). There should be no spaces. The file where perfromance data is stored is {description}-data.txt
 ```
 
 After running, the collected data will be printed on screen and saved to a file (see above). Copy the 5 lines for each test.
