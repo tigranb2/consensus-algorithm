@@ -52,7 +52,7 @@ The first number in the first line is the node count, the second number of the f
 ### Running:
 Execute:
 ```shell
-. run.sh {algorithm} {num_of_nodes} {broadcast_frequency OR timeout} {loss_rate} {description}
+. run.sh {algorithm} {num_of_nodes} {broadcast_frequency OR timeout} {loss_rate} {description} # ex: . run.sh ACR 300 10 0.5 ACR_scalability_300
 # algorithm is the name of the algorithm you wish to run (e.g. ACR, BMP3, etc.)
 # num_of_nodes is the number of nodes (same as number in config.json and config.yaml)
 # the third argument is the broadcast frequency for ACR & BACR, but the timeout for MP3 & BMP3
