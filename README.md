@@ -62,7 +62,7 @@ Execute:
 
 After running, the collected data will be printed on screen and saved to a file (see above). Copy the 5 lines for each test.    
       
-Example (your numbers will be much larger. This is only 10 nodes):
+Example (your numbers will be much larger; this is only 10 nodes):
 ```shell
 ...
 *** Done # copy the next 5 lines
