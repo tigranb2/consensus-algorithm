@@ -147,9 +147,12 @@ func dial(destination string) {
 }
 
 func unicast(CONNECT string, state message.Message) {
-	if _, ok := connections[CONNECT]; !ok { //attempt dial and return
-		dial(CONNECT)
-		return
+	for {
+		if _, ok := connections[CONNECT]; !ok { //if connection doesn't exist, creates it
+			dial(CONNECT)
+		} else {
+			break
+		}
 	}
 
 	var buf bytes.Buffer
