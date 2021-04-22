@@ -21,7 +21,7 @@ lossRate = float(argv[4])
 
 def get_topology():
     privateDirs = []
-    host = partial(CPULimitedHost, privateDirs=privateDirs)
+    host = custom(CPULimitedHost, cpu=.003, privateDirs=privateDirs)
     try:
         topo_cls = getattr(modules[__name__], conf["topo"]["class"])
         topo_obj = topo_cls(*conf['topo']["args"], **conf['topo']["kwargs"])
