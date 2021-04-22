@@ -73,12 +73,12 @@ func broadcast(delay int) {
 			mu.Lock()
 			s := state
 			mu.Unlock()
-			variation := rand.Intn(10 + 10) - 10 
+			variation := rand.Intn((delay/3) + (delay/3)) - (delay/3) //generates number betweeen [-delay/3, delay/3]
 			time.Sleep(time.Duration(delay + variation) * time.Millisecond) //sleep for delay + variation milliseconds
 			for _, CONNECT := range config.NodesCONNECT {
 				unicast(CONNECT, s) //sends averaged states to all nodes
 			}
-		}
+		} 
 	}
 }
 
