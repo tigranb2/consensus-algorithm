@@ -6,7 +6,6 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	"log"
 	"math/rand"
 	"net"
 	"os"
