@@ -20,7 +20,8 @@ import (
 var (
 	faulty      bool
 	isFailed    = false
-	connections = make(map[string]*net.UDPConn) //contains all connections
+	connections = make(map[string]*net.UDPAddr) //contains all connections
+	pc			net.PacketConn
 	R           = make([]float32, config.NodeCount)
 	gotValue    = make([]bool, config.NodeCount)
 	mu          sync.Mutex
@@ -56,7 +57,7 @@ func main() {
 	go broadcast(int(delay))
 
 	for {
-		if p == 100 {
+		if p >= 100 {
 			timeElapsed := time.Since(start)
 			defer fmt.Printf("Time taken: %v\n", timeElapsed)
 			quit <- true
@@ -73,7 +74,7 @@ func broadcast(delay int) {
 			s := state
 			mu.Unlock()
 			variation := rand.Intn(10 + 10) - 10 
-			time.Sleep(time.Duration(delay + variation) * time.Millisecond) //sleep for {delay} milliseconds
+			time.Sleep(time.Duration(delay + variation) * time.Millisecond) //sleep for delay + variation milliseconds
 			for _, CONNECT := range config.NodesCONNECT {
 				unicast(CONNECT, s) //sends averaged states to all nodes
 			}
@@ -84,21 +85,14 @@ func broadcast(delay int) {
 func server(id int, CONNECT string) {
 	msg := make(chan message.Message)
 	port := ":" + strings.Split(CONNECT, ":")[1]
-
-	//creates server on ip:port CONNECT
-	addr, err := net.ResolveUDPAddr("udp4", port)
-	ln, err := net.ListenUDP("udp4", addr)
-	if err != nil {
-		log.Printf("Error opening server: \n%v\n", err)
-		return
-	}
+	pc, _ = net.ListenPacket("udp4", port)
 
 	//goroutine handles multiple incoming connections
 	go func() {
 		buf := make([]byte, 1000)
 		rs := message.Message{}
 		for {
-			length, _, _ := ln.ReadFromUDP(buf)
+			length, _, _ := pc.ReadFrom(buf)
 			buffer := bytes.NewBuffer(buf[:length])
 			gob.NewDecoder(buffer).Decode(&rs)
 			msg <- rs
@@ -132,28 +126,27 @@ func server(id int, CONNECT string) {
 	}
 }
 
-func dial(destination string) {
-	addr, err := net.ResolveUDPAddr("udp4", destination)
-	c, err := net.DialUDP("udp4", nil, addr)
-	if err != nil {
+func dial(destination string){
+	if pc == nil {
 		return
 	}
 
-	connections[destination] = c
+	addr,err := net.ResolveUDPAddr("udp4", destination)
+	if err != nil {
+		return
+	}
+	connections[destination] = addr
 }
 
 func unicast(CONNECT string, state message.Message) {
-	for {
-		if _, ok := connections[CONNECT]; !ok { //if connection doesn't exist, creates it
-			dial(CONNECT)
-		} else {
-			break
-		}
+	if _, ok := connections[CONNECT]; !ok {
+		dial(CONNECT)
+		return
 	}
 
 	var buf bytes.Buffer
 	gob.NewEncoder(&buf).Encode(state)
-	connections[CONNECT].Write(buf.Bytes())
+	pc.WriteTo(buf.Bytes(), connections[CONNECT])
 }
 
 func faultTest() {
