@@ -72,7 +72,8 @@ func broadcast(delay int) {
 			mu.Lock()
 			s := state
 			mu.Unlock()
-			time.Sleep(time.Duration(delay) * time.Millisecond) //sleep for [delay] milliseconds
+			variation := rand.Intn(10 + 10) - 10 
+			time.Sleep(time.Duration(delay + variation) * time.Millisecond) //sleep for {delay} milliseconds
 			for _, CONNECT := range config.NodesCONNECT {
 				unicast(CONNECT, s) //sends averaged states to all nodes
 			}
